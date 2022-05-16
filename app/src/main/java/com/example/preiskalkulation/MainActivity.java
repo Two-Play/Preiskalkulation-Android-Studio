@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                 objBerechnung.setKundenskonto(objBerechnung.convertToDouble(ks));
                 objBerechnung.setKundenrabatt(objBerechnung.convertToDouble(kr));
                 objBerechnung.setUmsatzsteuer(objBerechnung.convertToDouble(umst));
-                //df
+
 
                 if (objBerechnung.isVorwaerts()){
                     objBerechnung.vorwaertsBerechnung();
