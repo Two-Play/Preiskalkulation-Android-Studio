@@ -32,4 +32,5 @@
     <string name="ergebnisBarverkaufspreis">= Barverkaufspreis: </string>
     <string name="ergebnisSelbskosten">= Selbstkosten: </string>
     <string name="ergebnisZielverkaufspreis">= Zielverkaufspreis:</string>
+    <string name="warnungRueckwaerts">"Bitte lassen Sie das Textfeld \"Materialeinzelkosten\" oder \"Fertigungseinzelkosten\" frei. "</string>
 </resources>

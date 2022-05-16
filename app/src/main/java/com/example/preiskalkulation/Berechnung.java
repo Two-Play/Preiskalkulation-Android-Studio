@@ -338,6 +338,9 @@ public class Berechnung {
         setNettoverkaufspreis(getZielverkaufspreis()+getErgebnisKr());
         setErgebnisUmst(prozentBerechnen(getUmsatzsteuer(),getNettoverkaufspreis()));
         setBruttoverkaufspreis(getNettoverkaufspreis()+getErgebnisUmst());
+    }
+
+    public void rueckwaertsBerechnung(){
 
     }
 
