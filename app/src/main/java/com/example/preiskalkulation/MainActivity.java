@@ -16,12 +16,14 @@ import com.google.android.material.button.MaterialButtonToggleGroup;
 
 public class MainActivity extends AppCompatActivity {
 
+    Berechnung objBerechnung = new Berechnung();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-            Berechnung objBerechnung = new Berechnung();
+
             Button berechnung = findViewById(R.id.berechnung);
             EditText mek = findViewById(R.id.mekTF);
             EditText mgk = findViewById(R.id.mgkTF);
@@ -86,6 +88,44 @@ public class MainActivity extends AppCompatActivity {
 
                             disclaimer.setVisibility(View.GONE);
 
+                            //Leert EditTexts
+                            mek.setText(null);
+                            mgk.setText(null);
+                            mk.setText(R.string.ergebnisMaterialkosten);
+                            ergebnisMGK.setText(null);
+                            fek.setText(null);
+                            fgk.setText(null);
+                            sdFert.setText(null);
+                            ergebnisFGK.setText(null);
+                            fk.setText(R.string.ergebnisFertigungskosten);
+                            hk.setText(R.string.herstellkosten);
+                            vertGk.setText(null);
+                            ergebnisVertGk.setText(null);
+                            verwGk.setText(null);
+                            ergebnisVerwGK.setText(null);
+                            sdVert.setText(null);
+                            sk.setText(R.string.ergebnisSelbskosten);
+                            gewin.setText(null);
+                            bvpTV.setText(R.string.ergebnisBarverkaufspreis);
+                            ks.setText(null);
+                            zvp.setText(R.string.ergebnisZielverkaufspreis);
+                            kr.setText(null);
+                            nvp.setText(null);
+                            umst.setText(null);
+                            bvp.setText(null);
+                            ergebnisGewinn.setText(null);
+                            ergebnisKr.setText(null);
+                            ergebnisKs.setText(null);
+                            ergebnisUmst.setText(null);
+
+                            datenLoeschung();
+
+                            //Hintergrund reset EditText
+                            nvp.setBackground(bgEditText);
+                            bvp.setBackground(bgEditText);
+                            mek.setBackground(bgEditText);
+                            fek.setBackground(bgEditText);
+                            gewin.setBackground(bgEditText);
                             break;
                         case R.id.rueckwaertsBtn:
                             Log.i("DEBUG", "Rückwärtskalk");
@@ -98,6 +138,45 @@ public class MainActivity extends AppCompatActivity {
                             bvp.setEnabled(true);
 
                             disclaimer.setVisibility(View.VISIBLE);
+
+                            //Leert EditTexts
+                            mek.setText(null);
+                            mgk.setText(null);
+                            mk.setText(R.string.ergebnisMaterialkosten);
+                            ergebnisMGK.setText(null);
+                            fek.setText(null);
+                            fgk.setText(null);
+                            sdFert.setText(null);
+                            ergebnisFGK.setText(null);
+                            fk.setText(R.string.ergebnisFertigungskosten);
+                            hk.setText(R.string.herstellkosten);
+                            vertGk.setText(null);
+                            ergebnisVertGk.setText(null);
+                            verwGk.setText(null);
+                            ergebnisVerwGK.setText(null);
+                            sdVert.setText(null);
+                            sk.setText(R.string.ergebnisSelbskosten);
+                            gewin.setText(null);
+                            bvpTV.setText(R.string.ergebnisBarverkaufspreis);
+                            ks.setText(null);
+                            zvp.setText(R.string.ergebnisZielverkaufspreis);
+                            kr.setText(null);
+                            nvp.setText(null);
+                            umst.setText(null);
+                            bvp.setText(null);
+                            ergebnisGewinn.setText(null);
+                            ergebnisKr.setText(null);
+                            ergebnisKs.setText(null);
+                            ergebnisUmst.setText(null);
+
+                            datenLoeschung();
+
+                            //Hintergrund reset EditText
+                            nvp.setBackground(bgEditText);
+                            bvp.setBackground(bgEditText);
+                            mek.setBackground(bgEditText);
+                            fek.setBackground(bgEditText);
+                            gewin.setBackground(bgEditText);
                             break;
                         case R.id.differenzBtn:
                             Log.i("DEBUG", "Differenzkalk");
@@ -111,6 +190,45 @@ public class MainActivity extends AppCompatActivity {
                             gewin.setText(null);
 
                             disclaimer.setVisibility(View.GONE);
+
+                            //Leert EditTexts
+                            mek.setText(null);
+                            mgk.setText(null);
+                            mk.setText(R.string.ergebnisMaterialkosten);
+                            ergebnisMGK.setText(null);
+                            fek.setText(null);
+                            fgk.setText(null);
+                            sdFert.setText(null);
+                            ergebnisFGK.setText(null);
+                            fk.setText(R.string.ergebnisFertigungskosten);
+                            hk.setText(R.string.herstellkosten);
+                            vertGk.setText(null);
+                            ergebnisVertGk.setText(null);
+                            verwGk.setText(null);
+                            ergebnisVerwGK.setText(null);
+                            sdVert.setText(null);
+                            sk.setText(R.string.ergebnisSelbskosten);
+                            gewin.setText(null);
+                            bvpTV.setText(R.string.ergebnisBarverkaufspreis);
+                            ks.setText(null);
+                            zvp.setText(R.string.ergebnisZielverkaufspreis);
+                            kr.setText(null);
+                            nvp.setText(null);
+                            umst.setText(null);
+                            bvp.setText(null);
+                            ergebnisGewinn.setText(null);
+                            ergebnisKr.setText(null);
+                            ergebnisKs.setText(null);
+                            ergebnisUmst.setText(null);
+
+                            datenLoeschung();
+
+                            //Hintergrund reset EditText
+                            nvp.setBackground(bgEditText);
+                            bvp.setBackground(bgEditText);
+                            mek.setBackground(bgEditText);
+                            fek.setBackground(bgEditText);
+                            gewin.setBackground(bgEditText);
                             break;
                         default:
                             Log.e("ERROR", "Case nicht gefunden");
@@ -123,6 +241,7 @@ public class MainActivity extends AppCompatActivity {
 
         berechnung.setOnClickListener(view -> {
 
+            //Übertran an die Klasse
             objBerechnung.setMaterialeinzelkosten(objBerechnung.convertToDouble(mek));
             objBerechnung.setMaterialgemeinkosten((objBerechnung.convertToDouble(mgk)));
             objBerechnung.setFertigungseinzelkosten(objBerechnung.convertToDouble(fek));
@@ -138,26 +257,50 @@ public class MainActivity extends AppCompatActivity {
             objBerechnung.setBruttoverkaufspreis(objBerechnung.convertToDouble(bvp));
             objBerechnung.setNettoverkaufspreis(objBerechnung.convertToDouble(nvp));
 
-
+            //MultiChois Check
             if (objBerechnung.isVorwaerts()){
                 objBerechnung.vorwaertsBerechnung();
                 nvp.setBackgroundResource(R.color.ic_launcher_background);
-                bvp.setBackgroundColor(getColor(R.color.ic_launcher_background));
+                bvp.setBackgroundResource(R.color.ic_launcher_background);
 
+            }else if (objBerechnung.isRueckwaerts()){
+                //Ergebnis markierung
+
+                if (fek.getText().toString().matches("") && mek.getText().toString().matches("")) {
+                    Toast.makeText(MainActivity.this, "Keine Eingaben! Bitte MEK oder FEK ausfüllen", Toast.LENGTH_LONG).show();
+                }
+                else if (mek.getText().toString().matches("")) {
+                    mek.setBackgroundResource(R.color.ic_launcher_background);
+                    objBerechnung.rueckwaertsBerechnung(true);
+                    mek.setText(objBerechnung.convertToString(objBerechnung.getMaterialeinzelkosten()));
+                }
+                else if (fek.getText().toString().matches("")) {
+                    fek.setBackgroundResource(R.color.ic_launcher_background);
+                    objBerechnung.rueckwaertsBerechnung(false);
+                    fek.setText(objBerechnung.convertToString(objBerechnung.getFertigungseinzelkosten()));
+                }
+                else {
+                    Toast.makeText(MainActivity.this, "Zuviele Eingaben! Bitte nur MEK oder FEK ausfüllen", Toast.LENGTH_LONG).show();
+                }
+            }else if (objBerechnung.isDifferenz()){
+                objBerechnung.differenz();
+                gewin.setText(objBerechnung.convertToString(objBerechnung.getGewinn()));
+                ergebnisGewinn.setText(objBerechnung.convertToString(objBerechnung.getErgebnisGewinn()));
+                gewin.setBackgroundResource(R.color.ic_launcher_background);
             }
 
             ergebnisMGK.setText(objBerechnung.convertToString(objBerechnung.getErgebnisMGK()));
-            mk.setText(getString(R.string.ergebnisMaterialkosten) + " " + objBerechnung.convertToString(objBerechnung.getMaterialkosten()));
-            fk.setText(getString(R.string.ergebnisFertigungskosten) + " " + objBerechnung.convertToString(objBerechnung.getFertigungskosten()));
+            mk.setText(String.format("%s %s", getString(R.string.ergebnisMaterialkosten), objBerechnung.convertToString(objBerechnung.getMaterialkosten())));
+            fk.setText(String.format("%s %s", getString(R.string.ergebnisFertigungskosten), objBerechnung.convertToString(objBerechnung.getFertigungskosten())));
             ergebnisFGK.setText(objBerechnung.convertToString(objBerechnung.getErgebnisFGK()));
-            hk.setText(getString(R.string.herstellkosten) + " " + objBerechnung.convertToString(objBerechnung.getHerstellkosten()));
+            hk.setText(String.format("%s %s", getString(R.string.herstellkosten), objBerechnung.convertToString(objBerechnung.getHerstellkosten())));
 
             ergebnisVerwGK.setText(objBerechnung.convertToString(objBerechnung.getErgebnisVerwGK()));
             ergebnisVertGk.setText(objBerechnung.convertToString(objBerechnung.getErgebnisvertGK()));
-            sk.setText(getString(R.string.ergebnisSelbskosten) + " " + objBerechnung.convertToString(objBerechnung.getSelbstkosten()));
+            sk.setText(String.format("%s %s", getString(R.string.ergebnisSelbskosten), objBerechnung.convertToString(objBerechnung.getSelbstkosten())));
 
             ergebnisGewinn.setText(objBerechnung.convertToString(objBerechnung.getErgebnisGewinn()));
-            bvpTV.setText(getString(R.string.ergebnisBarverkaufspreis) + " " + objBerechnung.convertToString(objBerechnung.getBarverkaufspreis()));
+            bvpTV.setText(String.format("%s %s", getString(R.string.ergebnisBarverkaufspreis), objBerechnung.convertToString(objBerechnung.getBarverkaufspreis())));
             ergebnisKs.setText(objBerechnung.convertToString(objBerechnung.getErgebnisKs()));
             zvp.setText(String.format("%s %s", getString(R.string.ergebnisZielverkaufspreis), objBerechnung.convertToString(objBerechnung.getZielverkaufspreis())));
             ergebnisKr.setText(objBerechnung.convertToString(objBerechnung.getErgebnisKr()));
@@ -206,11 +349,29 @@ public class MainActivity extends AppCompatActivity {
                 fek.setBackground(bgEditText);
                 gewin.setBackground(bgEditText);
                 Toast.makeText(MainActivity.this,"Alle Daten gelöscht",Toast.LENGTH_LONG).show();
+                datenLoeschung();
             }
         });
 
 
 
+    }
+
+    public void datenLoeschung(){
+        objBerechnung.setMaterialeinzelkosten(0);
+        objBerechnung.setMaterialgemeinkosten(0);
+        objBerechnung.setFertigungseinzelkosten(0);
+        objBerechnung.setFertigungsgemeinkosten(0);
+        objBerechnung.setSonderEkdVert(0);
+        objBerechnung.setVerwaltungsgemeinkosten(0);
+        objBerechnung.setVertriebsgemeinkosten(0);
+        objBerechnung.setSondereinzelkosten_des_Vertriebs(0);
+        objBerechnung.setGewinn(0);
+        objBerechnung.setKundenskonto(0);
+        objBerechnung.setKundenrabatt(0);
+        objBerechnung.setUmsatzsteuer(0);
+        objBerechnung.setBruttoverkaufspreis(0);
+        objBerechnung.setNettoverkaufspreis(0);
     }
 
 }

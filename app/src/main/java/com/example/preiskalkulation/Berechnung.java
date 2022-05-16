@@ -316,7 +316,7 @@ public class Berechnung {
     }
 
     public String convertToString(double number){
-        return String.valueOf(String.format("%.2f", number)+" €");
+        return String.valueOf(String.format("%.2f", number));
     }
 
     public void vorwaertsBerechnung(){
@@ -340,8 +340,58 @@ public class Berechnung {
         setBruttoverkaufspreis(getNettoverkaufspreis()+getErgebnisUmst());
     }
 
-    public void rueckwaertsBerechnung(){
+    public void rueckwaertsBerechnung(boolean isMEK_Leer){
 
+        if (!(bruttoverkaufspreis == 0)){
+            setErgebnisUmst(getBruttoverkaufspreis()/(100+getUmsatzsteuer())*getUmsatzsteuer());
+            setNettoverkaufspreis(getBruttoverkaufspreis()-getErgebnisUmst());
+        }
+        setErgebnisKr(getNettoverkaufspreis()/100*getKundenrabatt());
+        setZielverkaufspreis(getNettoverkaufspreis()-getErgebnisKr());
+        setErgebnisKs(getZielverkaufspreis()/100*getKundenskonto());
+        setBarverkaufspreis(getZielverkaufspreis()-getErgebnisKs());
+        setErgebnisGewinn(getBarverkaufspreis()/(100+getGewinn())*getGewinn());
+        setSelbstkosten(getBarverkaufspreis()-getErgebnisGewinn());
+        double prozet = 100+getVertriebsgemeinkosten()+getVerwaltungsgemeinkosten();
+        setErgebnisVerwGK(getSelbstkosten()/prozet*getVerwaltungsgemeinkosten());
+        setErgebnisvertGK(getSelbstkosten()/prozet*getVertriebsgemeinkosten());
+        setHerstellkosten(getSelbstkosten()-getSonderEkdVert()-getErgebnisvertGK()-getErgebnisVerwGK());
+
+        if ( isMEK_Leer){
+            setErgebnisFGK(prozentBerechnen(getFertigungsgemeinkosten(),getFertigungseinzelkosten()));
+            setFertigungskosten(getErgebnisFGK()+getSonderEkdFert()+getFertigungseinzelkosten());
+            setMaterialkosten(getHerstellkosten()-getFertigungskosten());
+            setErgebnisMGK(getMaterialkosten()/(100+getMaterialgemeinkosten())*getMaterialgemeinkosten());
+            setMaterialeinzelkosten(getMaterialkosten()-getErgebnisMGK());
+        }else {
+            setErgebnisMGK(prozentBerechnen(getMaterialgemeinkosten(),getMaterialeinzelkosten()));
+            setMaterialkosten(getErgebnisMGK()+getMaterialeinzelkosten());
+            setFertigungskosten(getHerstellkosten()-getMaterialkosten());
+            setErgebnisFGK(getFertigungskosten()/(100+getFertigungsgemeinkosten())*getFertigungsgemeinkosten());
+            setFertigungseinzelkosten(getFertigungskosten()-getErgebnisFGK());
+        }
+    }
+    public void differenz(){
+
+        setErgebnisMGK(prozentBerechnen(getMaterialgemeinkosten(),getMaterialeinzelkosten()));
+        setMaterialkosten((getErgebnisMGK()+ getMaterialeinzelkosten()));
+        setErgebnisFGK(prozentBerechnen(getFertigungsgemeinkosten(),getFertigungseinzelkosten()));
+        setFertigungskosten(getErgebnisFGK()+ getFertigungseinzelkosten()+getSonderEkdVert());
+        setHerstellkosten(getMaterialkosten()+getFertigungskosten());
+        setErgebnisVerwGK(prozentBerechnen(getVerwaltungsgemeinkosten(),getHerstellkosten()));
+        setErgebnisvertGK(prozentBerechnen(getVertriebsgemeinkosten(),getHerstellkosten()));
+        setSelbstkosten(getSonderEkdFert()+getErgebnisVerwGK()+getErgebnisvertGK()+getHerstellkosten());
+
+        if (!(bruttoverkaufspreis == 0)){
+            setErgebnisUmst(getBruttoverkaufspreis()/(100+getUmsatzsteuer())*getUmsatzsteuer());
+            setNettoverkaufspreis(getBruttoverkaufspreis()-getErgebnisUmst());
+        }
+        setErgebnisKr(getNettoverkaufspreis()/100*getKundenrabatt());
+        setZielverkaufspreis(getNettoverkaufspreis()-getErgebnisKr());
+        setErgebnisKs(getZielverkaufspreis()/100*getKundenskonto());
+        setBarverkaufspreis(getZielverkaufspreis()-getErgebnisKs());
+        setErgebnisGewinn(getBarverkaufspreis()-getSelbstkosten());
+        setGewinn(100/getSelbstkosten()*getErgebnisGewinn());
     }
 
 
