@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Preiskalkulation</string>
+    <string name="vorwaerts">Vorwärts</string>
+    <string name="rueckwaerts">Rückwärts</string>
+    <string name="differenz">Differenz</string>
+    <string name="kalkulationsart">Kalkulationsart:</string>
+    <string name="fertigungsmaterial">Fertigungsmaterial</string>
+    <string name="materialgemeinkosten">Materialgemeinkosten in %</string>
+    <string name="materialeinzelkosten">Materialeinzelkosten</string>
+    <string name="fertigungseinzelkosten">Fertigungseinzelkosten</string>
+    <string name="fertigungsgemeinkosten">Fertigungsgemeinkosten in %</string>
+    <string name="fertigungskosten">Fertigungskosten</string>
+    <string name="materialkosten">Materialkosten</string>
+    <string name="sondereinzelkosten_d_f">"Sondereinzelkosten der Fertigung"</string>
+    <string name="herstellkosten">= Herstellkosten: </string>
+    <string name="verwaltungsgemeinkosten">Verwaltungsgemeinkosten in %</string>
+    <string name="vertriebsgemeinkosten">Vertriebsgemeinkosten in %</string>
+    <string name="sondereinzelkosten_des_Vertriebs">"Sondereinzelkosten des Vertriebs"</string>
+    <string name="selbstkosten">Selbstkosten</string>
+    <string name="gewinn">Gewinn in %</string>
+    <string name="barverkaufspreis">= Barverkaufspreis</string>
+    <string name="kundenskonto">Kundenskonto in %</string>
+    <string name="zielverkaufspreis">Zielverkaufspreis</string>
+    <string name="kundenrabatt">Kundenrabatt in %</string>
+    <string name="nettoverkaufspreis">Nettoverkaufspreis</string>
+    <string name="umsatzsteuer">Umsatzsteuer in %</string>
+    <string name="bruttoverkaufspreis">Bruttoverkaufspreis</string>
+    <string name="berechnung">Berechnung</string>
+    <string name="loeschen">Löschen</string>
+    <string name="ergebnisMaterialkosten">= Materialkosten: </string>
+    <string name="ergebnisFertigungskosten">= Fertigungskosten: </string>
+    <string name="ergebnisBarverkaufspreis">= Barverkaufspreis: </string>
+    <string name="ergebnisSelbskosten">= Selbstkosten: </string>
+    <string name="ergebnisZielverkaufspreis">= Zielverkaufspreis:</string>
+</resources>
