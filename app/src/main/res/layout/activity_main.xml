@@ -368,7 +368,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="@string/vertriebsgemeinkosten" />
+                                android:text="@string/vertriebsgemeinkosten"
+                                android:textColor="#616161" />
 
                             <EditText
                                 android:id="@+id/vertTF"
@@ -409,7 +410,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@string/sondereinzelkosten_des_Vertriebs" />
+                            android:text="@string/sondereinzelkosten_des_Vertriebs"
+                            android:textColor="#616161" />
 
                         <EditText
                             android:id="@+id/sdvTF"

@@ -4,7 +4,7 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class Berechnung {
+public class Utility {
     private boolean vorwaerts;
     private boolean rueckwaerts;
     private boolean differenz;
@@ -319,6 +319,19 @@ public class Berechnung {
         return String.valueOf(String.format("%.2f", number));
     }
 
+
+    public boolean validate(EditText[] fields){
+        for(int i = 0; i < fields.length; i++){
+            EditText currentField = fields[i];
+            if(currentField.getText().toString().length() <= 0){
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    //Berechnungen
     public void vorwaertsBerechnung(){
         setErgebnisMGK(prozentBerechnen(getMaterialgemeinkosten(),getMaterialeinzelkosten()));
         setMaterialkosten((getErgebnisMGK()+ getMaterialeinzelkosten()));
