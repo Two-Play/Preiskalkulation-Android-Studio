@@ -1,6 +1,10 @@
 package com.example.preiskalkulation;
 
+import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -307,10 +311,9 @@ public class Utility {
     public double convertToDouble(EditText textField){
         String value = textField.getText().toString();
         //Überprüfung ob EditText leer ist
-        if (!value.matches("")){
+        if (!value.toString().isEmpty()){
             return Double.parseDouble(textField.getText().toString());
         }else {
-            Log.i("INFO", "Set value to 0.0");
             return 0.0;
         }
     }
@@ -319,17 +322,15 @@ public class Utility {
         return String.valueOf(String.format("%.2f", number));
     }
 
-
     public boolean validate(EditText[] fields){
         for(int i = 0; i < fields.length; i++){
             EditText currentField = fields[i];
-            if(currentField.getText().toString().length() <= 0){
-                return false;
+            if(currentField.getText().toString().isEmpty()){
+                return true;
             }
         }
-        return true;
+        return false;
     }
-
 
     //Berechnungen
     public void vorwaertsBerechnung(){

@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
             berechnung = findViewById(R.id.berechnung);
             mek = findViewById(R.id.mekTF);
             mgk = findViewById(R.id.mgkTF);
@@ -105,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
             public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
                 if (isChecked) {
                     //Button ID check
-
                     switch (checkedId){
                         case R.id.vorwaertsBtn:
                             Log.i("DEBUG", "Vorwärtskalk");
@@ -124,12 +122,6 @@ public class MainActivity extends AppCompatActivity {
 
                             //Leert EditTexts
                             datenLoeschung();
-                            //Hintergrund reset EditText
-                            nvp.setBackground(bgEditText);
-                            bvp.setBackground(bgEditText);
-                            mek.setBackground(bgEditText);
-                            fek.setBackground(bgEditText);
-                            gewin.setBackground(bgEditText);
                             break;
                         case R.id.rueckwaertsBtn:
                             Log.i("DEBUG", "Rückwärtskalk");
@@ -145,13 +137,6 @@ public class MainActivity extends AppCompatActivity {
 
                             //Leert EditTexts
                             datenLoeschung();
-
-                            //Hintergrund reset EditText
-                            nvp.setBackground(bgEditText);
-                            bvp.setBackground(bgEditText);
-                            mek.setBackground(bgEditText);
-                            fek.setBackground(bgEditText);
-                            gewin.setBackground(bgEditText);
                             break;
                         case R.id.differenzBtn:
                             Log.i("DEBUG", "Differenzkalk");
@@ -168,18 +153,10 @@ public class MainActivity extends AppCompatActivity {
 
                             //Leert EditTexts
                             datenLoeschung();
-
-                            //Hintergrund reset EditText
-                            nvp.setBackground(bgEditText);
-                            bvp.setBackground(bgEditText);
-                            mek.setBackground(bgEditText);
-                            fek.setBackground(bgEditText);
-                            gewin.setBackground(bgEditText);
                             break;
                         default:
-                            Log.e("ERROR", "Case nicht gefunden");
+                            Log.e("ERROR", "Fall nicht gefunden");
                             break;
-
                     }
                 }
             }
@@ -203,68 +180,55 @@ public class MainActivity extends AppCompatActivity {
             objUtility.setBruttoverkaufspreis(objUtility.convertToDouble(bvp));
             objUtility.setNettoverkaufspreis(objUtility.convertToDouble(nvp));
 
-            //MultiChois Check
+            //MultiChois Check #### Rückwärts Vorwärts und Differenz
+            //Vorwärts
             if (objUtility.isVorwaerts()){
-                objUtility.vorwaertsBerechnung();
-                nvp.setBackgroundResource(R.color.ic_launcher_background);
-                bvp.setBackgroundResource(R.color.ic_launcher_background);
-
+                if (!(objUtility.validate(new EditText[] {mek,mgk,fek,fgk,verwGk,vertGk,gewin,umst}))) {
+                    objUtility.vorwaertsBerechnung();
+                    nvp.setBackgroundResource(R.color.ic_launcher_background);
+                    bvp.setBackgroundResource(R.color.ic_launcher_background);
+                    setDaten();
+                }else
+                    Toast.makeText(MainActivity.this, "Nicht alle Pflichtfeldert ausgefüllt! Bitte alle Felder überprüfen", Toast.LENGTH_LONG).show();
+                //Rückwärts
             }else if (objUtility.isRueckwaerts()){
-                //Ergebnis markierung
-
-                if (fek.getText().toString().isEmpty() && mek.getText().toString().isEmpty()) {
+                if (mek.getText().toString().isEmpty() && fek.getText().toString().isEmpty()){
                     Toast.makeText(MainActivity.this, "Keine Eingaben! Bitte MEK oder FEK ausfüllen", Toast.LENGTH_LONG).show();
                 }
                 else if (mek.getText().toString().isEmpty()) {
                     mek.setBackgroundResource(R.color.ic_launcher_background);
+                    fek.setBackground(bgEditText);
                     objUtility.rueckwaertsBerechnung(true);
                     mek.setText(objUtility.convertToString(objUtility.getMaterialeinzelkosten()));
+                    setDaten();
                 }
                 else if (fek.getText().toString().isEmpty()) {
                     fek.setBackgroundResource(R.color.ic_launcher_background);
+                    mek.setBackground(bgEditText);
                     objUtility.rueckwaertsBerechnung(false);
                     fek.setText(objUtility.convertToString(objUtility.getFertigungseinzelkosten()));
+                    setDaten();
                 }
                 else {
                     Toast.makeText(MainActivity.this, "Zuviele Eingaben! Bitte nur MEK oder FEK ausfüllen", Toast.LENGTH_LONG).show();
                 }
+                //Differenz
             }else if (objUtility.isDifferenz()){
+                if (!(objUtility.validate(new EditText[] {mek,mgk,fek,fgk,verwGk,vertGk,umst,nvp}))) {
                 objUtility.differenz();
                 gewin.setText(objUtility.convertToString(objUtility.getGewinn()));
                 ergebnisGewinn.setText(objUtility.convertToString(objUtility.getErgebnisGewinn()));
                 gewin.setBackgroundResource(R.color.ic_launcher_background);
+                setDaten();
+                }
             }
 
-            ergebnisMGK.setText(objUtility.convertToString(objUtility.getErgebnisMGK()));
-            mk.setText(String.format("%s %s", getString(R.string.ergebnisMaterialkosten), objUtility.convertToString(objUtility.getMaterialkosten())));
-            fk.setText(String.format("%s %s", getString(R.string.ergebnisFertigungskosten), objUtility.convertToString(objUtility.getFertigungskosten())));
-            ergebnisFGK.setText(objUtility.convertToString(objUtility.getErgebnisFGK()));
-            hk.setText(String.format("%s %s", getString(R.string.herstellkosten), objUtility.convertToString(objUtility.getHerstellkosten())));
-
-            ergebnisVerwGK.setText(objUtility.convertToString(objUtility.getErgebnisVerwGK()));
-            ergebnisVertGk.setText(objUtility.convertToString(objUtility.getErgebnisvertGK()));
-            sk.setText(String.format("%s %s", getString(R.string.ergebnisSelbskosten), objUtility.convertToString(objUtility.getSelbstkosten())));
-
-            ergebnisGewinn.setText(objUtility.convertToString(objUtility.getErgebnisGewinn()));
-            bvpTV.setText(String.format("%s %s", getString(R.string.ergebnisBarverkaufspreis), objUtility.convertToString(objUtility.getBarverkaufspreis())));
-            ergebnisKs.setText(objUtility.convertToString(objUtility.getErgebnisKs()));
-            zvp.setText(String.format("%s %s", getString(R.string.ergebnisZielverkaufspreis), objUtility.convertToString(objUtility.getZielverkaufspreis())));
-            ergebnisKr.setText(objUtility.convertToString(objUtility.getErgebnisKr()));
-
-            nvp.setText(objUtility.convertToString(objUtility.getNettoverkaufspreis()));
-            ergebnisUmst.setText(objUtility.convertToString(objUtility.getErgebnisUmst()));
-            bvp.setText(objUtility.convertToString(objUtility.getBruttoverkaufspreis()));
 
         });
 
         loeschenBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nvp.setBackground(bgEditText);
-                bvp.setBackground(bgEditText);
-                mek.setBackground(bgEditText);
-                fek.setBackground(bgEditText);
-                gewin.setBackground(bgEditText);
                 Toast.makeText(MainActivity.this,"Alle Daten gelöscht",Toast.LENGTH_LONG).show();
                 datenLoeschung();
             }
@@ -274,13 +238,38 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void setDaten(){
+        ergebnisMGK.setText(objUtility.convertToString(objUtility.getErgebnisMGK()));
+        mk.setText(String.format("%s %s", getString(R.string.ergebnisMaterialkosten), objUtility.convertToString(objUtility.getMaterialkosten())));
+        fk.setText(String.format("%s %s", getString(R.string.ergebnisFertigungskosten), objUtility.convertToString(objUtility.getFertigungskosten())));
+        ergebnisFGK.setText(objUtility.convertToString(objUtility.getErgebnisFGK()));
+        hk.setText(String.format("%s %s", getString(R.string.herstellkosten), objUtility.convertToString(objUtility.getHerstellkosten())));
+
+        ergebnisVerwGK.setText(objUtility.convertToString(objUtility.getErgebnisVerwGK()));
+        ergebnisVertGk.setText(objUtility.convertToString(objUtility.getErgebnisvertGK()));
+        sk.setText(String.format("%s %s", getString(R.string.ergebnisSelbskosten), objUtility.convertToString(objUtility.getSelbstkosten())));
+
+        ergebnisGewinn.setText(objUtility.convertToString(objUtility.getErgebnisGewinn()));
+        bvpTV.setText(String.format("%s %s", getString(R.string.ergebnisBarverkaufspreis), objUtility.convertToString(objUtility.getBarverkaufspreis())));
+        ergebnisKs.setText(objUtility.convertToString(objUtility.getErgebnisKs()));
+        zvp.setText(String.format("%s %s", getString(R.string.ergebnisZielverkaufspreis), objUtility.convertToString(objUtility.getZielverkaufspreis())));
+        ergebnisKr.setText(objUtility.convertToString(objUtility.getErgebnisKr()));
+
+        nvp.setText(objUtility.convertToString(objUtility.getNettoverkaufspreis()));
+        ergebnisUmst.setText(objUtility.convertToString(objUtility.getErgebnisUmst()));
+        bvp.setText(objUtility.convertToString(objUtility.getBruttoverkaufspreis()));
+
+    }
+
     public void datenLoeschung(){
+        //Hintergrund reset EditText
         nvp.setBackground(bgEditText);
         bvp.setBackground(bgEditText);
         mek.setBackground(bgEditText);
         fek.setBackground(bgEditText);
         gewin.setBackground(bgEditText);
 
+        //Leere EditText
         mek.setText("");
         mgk.setText("");
         mk.setText(R.string.ergebnisMaterialkosten);
@@ -310,6 +299,7 @@ public class MainActivity extends AppCompatActivity {
         ergebnisKs.setText("");
         ergebnisUmst.setText("");
 
+        //Reset Class Data
         objUtility.setMaterialeinzelkosten(0);
         objUtility.setMaterialgemeinkosten(0);
         objUtility.setFertigungseinzelkosten(0);

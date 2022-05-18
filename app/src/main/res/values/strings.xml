@@ -26,7 +26,7 @@
     <string name="umsatzsteuer">Umsatzsteuer in %</string>
     <string name="bruttoverkaufspreis">Bruttoverkaufspreis</string>
     <string name="berechnung">Berechnung</string>
-    <string name="loeschen">Löschen</string>
+    <string name="loeschen">Daten Löschen</string>
     <string name="ergebnisMaterialkosten">= Materialkosten: </string>
     <string name="ergebnisFertigungskosten">= Fertigungskosten: </string>
     <string name="ergebnisBarverkaufspreis">= Barverkaufspreis: </string>

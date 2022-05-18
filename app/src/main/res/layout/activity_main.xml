@@ -1,104 +1,303 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="10dp"
+    android:background="@color/background"
     tools:context=".MainActivity">
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/kalkulationsart"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView"
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/toggleButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="@string/kalkulationsart"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:checkedButton="@id/vorwaertsBtn"
+                app:selectionRequired="true"
+                app:singleSelection="true">
+
+                <Button
+                    android:id="@+id/vorwaertsBtn"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/vorwaerts" />
+
+                <Button
+                    android:id="@+id/rueckwaertsBtn"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rueckwaerts" />
+
+                <Button
+                    android:id="@+id/differenzBtn"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/differenz"
+                    android:visibility="visible" />
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/disclaimer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="17dp"
+            android:text="@string/warnungRueckwaerts"
+            android:visibility="gone" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="15dp"
+
+            app:cardCornerRadius="10dp"
+            app:contentPaddingBottom="10dp"
+            app:contentPaddingLeft="5dp"
+            app:contentPaddingRight="5dp"
+            app:contentPaddingTop="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:gravity="center_horizontal"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <com.google.android.material.button.MaterialButtonToggleGroup
-                    android:id="@+id/toggleButton"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:checkedButton="@id/vorwaertsBtn"
-                    app:selectionRequired="true"
-                    app:singleSelection="true">
+                    android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/vorwaertsBtn"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/materialeinzelkosten" />
+
+                    <EditText
+                        android:id="@+id/mekTF"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:importantForAutofill="no"
+                        android:inputType="numberDecimal"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/vorwaerts" />
+                        android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/rueckwaertsBtn"
-                        style="?attr/materialButtonOutlinedStyle"
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/materialgemeinkosten" />
+
+                        <EditText
+                            android:id="@+id/mgkTF"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:importantForAutofill="no"
+                            android:inputType="numberDecimal"
+                            tools:ignore="SpeakableTextPresentCheck" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="27dp" />
+
+                        <TextView
+                            android:id="@+id/ergebnisMGK"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textAlignment="viewEnd"
+                            android:textSize="24sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/ergebnisMK"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/ergebnisMaterialkosten"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/fertigungseinzelkosten" />
+
+                    <EditText
+                        android:id="@+id/fekTF"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:importantForAutofill="no"
+                        android:inputType="numberDecimal"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/rueckwaerts" />
+                        android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/differenzBtn"
-                        style="?attr/materialButtonOutlinedStyle"
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/fertigungsgemeinkosten" />
+
+                        <EditText
+                            android:id="@+id/fgkTF"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:importantForAutofill="no"
+                            android:inputType="numberDecimal"
+                            tools:ignore="SpeakableTextPresentCheck" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="27dp" />
+
+                        <TextView
+                            android:id="@+id/ergebnisFGK"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textAlignment="viewEnd"
+                            android:textSize="24sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/differenz"
-                        android:visibility="visible" />
-                </com.google.android.material.button.MaterialButtonToggleGroup>
+                        android:layout_weight="1"
+                        android:text="@string/sondereinzelkosten_d_f" />
+
+                    <EditText
+                        android:id="@+id/sdFertTF"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:importantForAutofill="no"
+                        android:inputType="numberDecimal"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/ergebnisFK"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/ergebnisFertigungskosten"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/herstellkosten"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/herstellkosten"
+                    android:textStyle="bold" />
 
             </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-            <TextView
-                android:id="@+id/disclaimer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="17dp"
-                android:text="@string/warnungRueckwaerts"
-                android:visibility="gone" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="15dp"
 
-            <androidx.cardview.widget.CardView
+            app:cardCornerRadius="10dp"
+            app:contentPaddingBottom="10dp"
+            app:contentPaddingLeft="5dp"
+            app:contentPaddingRight="5dp"
+            app:contentPaddingTop="10dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="15dp"
-                app:cardBackgroundColor="@color/material_dynamic_neutral95"
-                app:cardCornerRadius="10dp"
-                app:contentPaddingBottom="10dp"
-                app:contentPaddingLeft="5dp"
-                app:contentPaddingRight="5dp"
-                app:contentPaddingTop="10dp">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
@@ -106,11 +305,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@string/materialeinzelkosten"
-                            android:textColor="#616161" />
+                            android:text="@string/verwaltungsgemeinkosten" />
 
                         <EditText
-                            android:id="@+id/mekTF"
+                            android:id="@+id/verwGkTF"
                             android:layout_width="match_parent"
                             android:layout_height="48dp"
                             android:layout_weight="1"
@@ -123,286 +321,30 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/materialgemeinkosten"
-                                android:textColor="#616161" />
-
-                            <EditText
-                                android:id="@+id/mgkTF"
-                                android:layout_width="match_parent"
-                                android:layout_height="48dp"
-                                android:layout_weight="1"
-                                android:ems="10"
-                                android:importantForAutofill="no"
-                                android:inputType="numberDecimal"
-                                tools:ignore="SpeakableTextPresentCheck" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <Space
-                                android:layout_width="match_parent"
-                                android:layout_height="27dp" />
-
-                            <TextView
-                                android:id="@+id/ergebnisMGK"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:textAlignment="viewEnd"
-                                android:textSize="24sp" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/ergebnisMK"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/ergebnisMaterialkosten"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <TextView
+                        <Space
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/fertigungseinzelkosten"
-                            android:textColor="#616161" />
-
-                        <EditText
-                            android:id="@+id/fekTF"
-                            android:layout_width="match_parent"
-                            android:layout_height="48dp"
-                            android:layout_weight="1"
-                            android:ems="10"
-                            android:importantForAutofill="no"
-                            android:inputType="numberDecimal"
-                            tools:ignore="SpeakableTextPresentCheck" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/fertigungsgemeinkosten"
-                                android:textColor="#616161" />
-
-                            <EditText
-                                android:id="@+id/fgkTF"
-                                android:layout_width="match_parent"
-                                android:layout_height="48dp"
-                                android:layout_weight="1"
-                                android:ems="10"
-                                android:importantForAutofill="no"
-                                android:inputType="numberDecimal"
-                                tools:ignore="SpeakableTextPresentCheck" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <Space
-                                android:layout_width="match_parent"
-                                android:layout_height="27dp" />
-
-                            <TextView
-                                android:id="@+id/ergebnisFGK"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:textAlignment="viewEnd"
-                                android:textSize="24sp" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                            android:layout_height="27dp" />
 
                         <TextView
+                            android:id="@+id/ergebnisVerwGK"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/sondereinzelkosten_d_f"
-                            android:textColor="#616161" />
-
-                        <EditText
-                            android:id="@+id/sdFertTF"
-                            android:layout_width="match_parent"
-                            android:layout_height="48dp"
-                            android:layout_weight="1"
-                            android:ems="10"
-                            android:importantForAutofill="no"
-                            android:inputType="numberDecimal"
-                            tools:ignore="SpeakableTextPresentCheck" />
+                            android:text=""
+                            android:textAlignment="viewEnd"
+                            android:textSize="24sp" />
                     </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/ergebnisFK"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/ergebnisFertigungskosten"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/herstellkosten"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/herstellkosten"
-                        android:textStyle="bold" />
 
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="15dp"
-                app:cardBackgroundColor="@color/material_dynamic_neutral95"
-                app:cardCornerRadius="10dp"
-                app:contentPaddingBottom="10dp"
-                app:contentPaddingLeft="5dp"
-                app:contentPaddingRight="5dp"
-                app:contentPaddingTop="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/verwaltungsgemeinkosten"
-                                android:textColor="#616161" />
-
-                            <EditText
-                                android:id="@+id/verwGkTF"
-                                android:layout_width="match_parent"
-                                android:layout_height="48dp"
-                                android:layout_weight="1"
-                                android:ems="10"
-                                android:importantForAutofill="no"
-                                android:inputType="numberDecimal"
-                                tools:ignore="SpeakableTextPresentCheck" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <Space
-                                android:layout_width="match_parent"
-                                android:layout_height="27dp" />
-
-                            <TextView
-                                android:id="@+id/ergebnisVerwGK"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:textAlignment="viewEnd"
-                                android:textSize="24sp" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/vertriebsgemeinkosten"
-                                android:textColor="#616161" />
-
-                            <EditText
-                                android:id="@+id/vertTF"
-                                android:layout_width="match_parent"
-                                android:layout_height="48dp"
-                                android:layout_weight="1"
-                                android:ems="10"
-                                android:importantForAutofill="no"
-                                android:inputType="numberDecimal"
-                                tools:ignore="SpeakableTextPresentCheck" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <Space
-                                android:layout_width="match_parent"
-                                android:layout_height="27dp" />
-
-                            <TextView
-                                android:id="@+id/ergebnisverTGK"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:textAlignment="viewEnd"
-                                android:textSize="24sp" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
@@ -410,11 +352,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@string/sondereinzelkosten_des_Vertriebs"
-                            android:textColor="#616161" />
+                            android:text="@string/vertriebsgemeinkosten" />
 
                         <EditText
-                            android:id="@+id/sdvTF"
+                            android:id="@+id/vertTF"
                             android:layout_width="match_parent"
                             android:layout_height="48dp"
                             android:layout_weight="1"
@@ -424,291 +365,329 @@
                             tools:ignore="SpeakableTextPresentCheck" />
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="27dp" />
+
+                        <TextView
+                            android:id="@+id/ergebnisverTGK"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textAlignment="viewEnd"
+                            android:textSize="24sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
                     <TextView
-                        android:id="@+id/ergebnisSK"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/ergebnisSelbskosten"
-                        android:textStyle="bold" />
+                        android:layout_weight="1"
+                        android:text="@string/sondereinzelkosten_des_Vertriebs" />
 
+                    <EditText
+                        android:id="@+id/sdvTF"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:importantForAutofill="no"
+                        android:inputType="numberDecimal"
+                        tools:ignore="SpeakableTextPresentCheck" />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
+                <TextView
+                    android:id="@+id/ergebnisSK"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ergebnisSelbskosten"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="15dp"
+
+            app:cardCornerRadius="10dp"
+            app:contentPaddingBottom="10dp"
+            app:contentPaddingLeft="5dp"
+            app:contentPaddingRight="5dp"
+            app:contentPaddingTop="10dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="15dp"
-                app:cardBackgroundColor="@color/material_dynamic_neutral95"
-                app:cardCornerRadius="10dp"
-                app:contentPaddingBottom="10dp"
-                app:contentPaddingLeft="5dp"
-                app:contentPaddingRight="5dp"
-                app:contentPaddingTop="10dp">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/gewinn" />
-
-                            <EditText
-                                android:id="@+id/gewinnTF"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:ems="10"
-                                android:importantForAutofill="no"
-                                android:inputType="numberDecimal"
-                                android:minHeight="48dp"
-                                tools:ignore="SpeakableTextPresentCheck" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <Space
-                                android:layout_width="match_parent"
-                                android:layout_height="27dp" />
-
-                            <TextView
-                                android:id="@+id/ergebnisGewinn"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:textAlignment="viewEnd"
-                                android:textSize="24sp" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/ergebnisBVP"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/barverkaufspreis"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/kundenskonto"
-                                android:textColor="#616161" />
-
-                            <EditText
-                                android:id="@+id/ksTF"
-                                android:layout_width="match_parent"
-                                android:layout_height="48dp"
-                                android:layout_weight="1"
-                                android:ems="10"
-                                android:importantForAutofill="no"
-                                android:inputType="numberDecimal"
-                                tools:ignore="SpeakableTextPresentCheck" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <Space
-                                android:layout_width="match_parent"
-                                android:layout_height="27dp" />
-
-                            <TextView
-                                android:id="@+id/ergebnisKs"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:textAlignment="viewEnd"
-                                android:textSize="24sp" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/ergebnisZVP"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/ergebnisZielverkaufspreis"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/kundenrabatt" />
-
-                            <EditText
-                                android:id="@+id/krTF"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:ems="10"
-                                android:importantForAutofill="no"
-                                android:inputType="numberDecimal"
-                                tools:ignore="SpeakableTextPresentCheck" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <Space
-                                android:layout_width="match_parent"
-                                android:layout_height="27dp" />
-
-                            <TextView
-                                android:id="@+id/ergebnisKr"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textAlignment="viewEnd"
-                                android:textSize="24sp" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/nettoverkaufspreis" />
+                            android:text="@string/gewinn" />
 
                         <EditText
-                            android:id="@+id/nvpTF"
+                            android:id="@+id/gewinnTF"
                             android:layout_width="match_parent"
-                            android:layout_height="48dp"
+                            android:layout_height="wrap_content"
                             android:ems="10"
                             android:importantForAutofill="no"
                             android:inputType="numberDecimal"
+                            android:minHeight="48dp"
                             tools:ignore="SpeakableTextPresentCheck" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/umsatzsteuer" />
-
-                            <EditText
-                                android:id="@+id/umstTF"
-                                android:layout_width="match_parent"
-                                android:layout_height="48dp"
-                                android:ems="10"
-                                android:importantForAutofill="no"
-                                android:inputType="numberDecimal"
-                                tools:ignore="SpeakableTextPresentCheck" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <Space
-                                android:layout_width="match_parent"
-                                android:layout_height="27dp" />
-
-                            <TextView
-                                android:id="@+id/ergebnisUmst"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:textAlignment="viewEnd"
-                                android:textSize="24sp" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
                         android:orientation="vertical">
 
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="27dp" />
+
                         <TextView
+                            android:id="@+id/ergebnisGewinn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/bruttoverkaufspreis"
-                            android:textColor="#616161" />
-
-                        <EditText
-                            android:id="@+id/bvpTF"
-                            android:layout_width="match_parent"
-                            android:layout_height="48dp"
-                            android:ems="10"
-                            android:importantForAutofill="no"
-                            android:inputType="numberDecimal"
-                            tools:ignore="SpeakableTextPresentCheck" />
+                            android:text=""
+                            android:textAlignment="viewEnd"
+                            android:textSize="24sp" />
                     </LinearLayout>
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/ergebnisBVP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/barverkaufspreis"
+                    android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/loeschen"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#C62828"
-                android:text="@string/loeschen" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/berechnung"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/berechnung" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-        </LinearLayout>
-    </ScrollView>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/kundenskonto" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                        <EditText
+                            android:id="@+id/ksTF"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:importantForAutofill="no"
+                            android:inputType="numberDecimal"
+                            tools:ignore="SpeakableTextPresentCheck" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="27dp" />
+
+                        <TextView
+                            android:id="@+id/ergebnisKs"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textAlignment="viewEnd"
+                            android:textSize="24sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/ergebnisZVP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/ergebnisZielverkaufspreis"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/kundenrabatt" />
+
+                        <EditText
+                            android:id="@+id/krTF"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:importantForAutofill="no"
+                            android:inputType="numberDecimal"
+                            tools:ignore="SpeakableTextPresentCheck" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="27dp" />
+
+                        <TextView
+                            android:id="@+id/ergebnisKr"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="viewEnd"
+                            android:textSize="24sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/nettoverkaufspreis" />
+
+                    <EditText
+                        android:id="@+id/nvpTF"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:ems="10"
+                        android:importantForAutofill="no"
+                        android:inputType="numberDecimal"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/umsatzsteuer" />
+
+                        <EditText
+                            android:id="@+id/umstTF"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:ems="10"
+                            android:importantForAutofill="no"
+                            android:inputType="numberDecimal"
+                            tools:ignore="SpeakableTextPresentCheck" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="27dp" />
+
+                        <TextView
+                            android:id="@+id/ergebnisUmst"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textAlignment="viewEnd"
+                            android:textSize="24sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/bruttoverkaufspreis" />
+
+                    <EditText
+                        android:id="@+id/bvpTF"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:ems="10"
+                        android:importantForAutofill="no"
+                        android:inputType="numberDecimal"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/loeschen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#C62828"
+            android:text="@string/loeschen" />
+
+        <Button
+            android:id="@+id/berechnung"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/berechnung" />
+
+    </LinearLayout>
+
+</ScrollView>
