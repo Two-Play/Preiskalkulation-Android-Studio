@@ -3,10 +3,13 @@ package com.example.preiskalkulation;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.hardware.input.InputManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -31,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     EditText vertGk;
     EditText sdVert;
     TextView sk;
-    EditText gewin;
+    EditText gewinn;
     TextView bvpTV;
     EditText ks;
     TextView zvp;
@@ -70,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             vertGk = findViewById(R.id.vertTF);
             sdVert = findViewById(R.id.sdvTF);
             sk = findViewById(R.id.ergebnisSK);
-            gewin = findViewById(R.id.gewinnTF);
+            gewinn = findViewById(R.id.gewinnTF);
             bvpTV = findViewById(R.id.ergebnisBVP);
             ks = findViewById(R.id.ksTF);
             zvp = findViewById(R.id.ergebnisZVP);
@@ -111,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                             objUtility.setRueckwaerts(false);
                             objUtility.setDifferenz(false);
 
-                            gewin.setEnabled(true);
+                            gewinn.setEnabled(true);
                             nvp.setEnabled(false);
                             bvp.setEnabled(false);
 
@@ -122,6 +125,8 @@ public class MainActivity extends AppCompatActivity {
 
                             //Leert EditTexts
                             datenLoeschung();
+
+                            clearFocus();
                             break;
                         case R.id.rueckwaertsBtn:
                             Log.i("DEBUG", "Rückwärtskalk");
@@ -129,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                             objUtility.setRueckwaerts(true);
                             objUtility.setDifferenz(false);
 
-                            gewin.setEnabled(true);
+                            gewinn.setEnabled(true);
                             nvp.setEnabled(true);
                             bvp.setEnabled(true);
 
@@ -137,6 +142,8 @@ public class MainActivity extends AppCompatActivity {
 
                             //Leert EditTexts
                             datenLoeschung();
+
+                            clearFocus();
                             break;
                         case R.id.differenzBtn:
                             Log.i("DEBUG", "Differenzkalk");
@@ -144,15 +151,17 @@ public class MainActivity extends AppCompatActivity {
                             objUtility.setRueckwaerts(false);
                             objUtility.setDifferenz(true);
 
-                            gewin.setEnabled(false);
+                            gewinn.setEnabled(false);
                             nvp.setEnabled(true);
                             bvp.setEnabled(true);
-                            gewin.setText("");
+                            gewinn.setText("");
 
                             disclaimer.setVisibility(View.GONE);
 
                             //Leert EditTexts
                             datenLoeschung();
+
+                            clearFocus();
                             break;
                         default:
                             Log.e("ERROR", "Fall nicht gefunden");
@@ -164,6 +173,8 @@ public class MainActivity extends AppCompatActivity {
 
         berechnung.setOnClickListener(view -> {
 
+            clearFocus();
+
             //Übertran an die Klasse
             objUtility.setMaterialeinzelkosten(objUtility.convertToDouble(mek));
             objUtility.setMaterialgemeinkosten((objUtility.convertToDouble(mgk)));
@@ -173,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
             objUtility.setVerwaltungsgemeinkosten(objUtility.convertToDouble(verwGk));
             objUtility.setVertriebsgemeinkosten(objUtility.convertToDouble(vertGk));
             objUtility.setSondereinzelkosten_des_Vertriebs(objUtility.convertToDouble(sdVert));
-            objUtility.setGewinn(objUtility.convertToDouble(gewin));
+            objUtility.setGewinn(objUtility.convertToDouble(gewinn));
             objUtility.setKundenskonto(objUtility.convertToDouble(ks));
             objUtility.setKundenrabatt(objUtility.convertToDouble(kr));
             objUtility.setUmsatzsteuer(objUtility.convertToDouble(umst));
@@ -183,17 +194,17 @@ public class MainActivity extends AppCompatActivity {
             //MultiChois Check #### Rückwärts Vorwärts und Differenz
             //Vorwärts
             if (objUtility.isVorwaerts()){
-                if (!(objUtility.validate(new EditText[] {mek,mgk,fek,fgk,verwGk,vertGk,gewin,umst}))) {
+                if (!(objUtility.validate(new EditText[] {mek,mgk,fek,fgk,verwGk,vertGk,gewinn,umst}))) {
                     objUtility.vorwaertsBerechnung();
                     nvp.setBackgroundResource(R.color.ic_launcher_background);
                     bvp.setBackgroundResource(R.color.ic_launcher_background);
                     setDaten();
                 }else
-                    Toast.makeText(MainActivity.this, "Nicht alle Pflichtfeldert ausgefüllt! Bitte alle Felder überprüfen", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, getString(R.string.pflichtfelder_vor), Toast.LENGTH_LONG).show();
                 //Rückwärts
             }else if (objUtility.isRueckwaerts()){
                 if (mek.getText().toString().isEmpty() && fek.getText().toString().isEmpty()){
-                    Toast.makeText(MainActivity.this, "Keine Eingaben! Bitte MEK oder FEK ausfüllen", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, getString(R.string.pflichtfelder_rueck), Toast.LENGTH_LONG).show();
                 }
                 else if (mek.getText().toString().isEmpty()) {
                     mek.setBackgroundResource(R.color.ic_launcher_background);
@@ -210,15 +221,15 @@ public class MainActivity extends AppCompatActivity {
                     setDaten();
                 }
                 else {
-                    Toast.makeText(MainActivity.this, "Zuviele Eingaben! Bitte nur MEK oder FEK ausfüllen", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, getString(R.string.pflichtfelder_rueck_zuviel), Toast.LENGTH_LONG).show();
                 }
                 //Differenz
             }else if (objUtility.isDifferenz()){
                 if (!(objUtility.validate(new EditText[] {mek,mgk,fek,fgk,verwGk,vertGk,umst,nvp}))) {
                 objUtility.differenz();
-                gewin.setText(objUtility.convertToString(objUtility.getGewinn()));
+                gewinn.setText(objUtility.convertToString(objUtility.getGewinn()));
                 ergebnisGewinn.setText(objUtility.convertToString(objUtility.getErgebnisGewinn()));
-                gewin.setBackgroundResource(R.color.ic_launcher_background);
+                gewinn.setBackgroundResource(R.color.ic_launcher_background);
                 setDaten();
                 }
             }
@@ -229,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
         loeschenBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Alle Daten gelöscht",Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this,getString(R.string.datenGeloescht),Toast.LENGTH_LONG).show();
                 datenLoeschung();
             }
         });
@@ -266,7 +277,7 @@ public class MainActivity extends AppCompatActivity {
         bvp.setBackground(bgEditText);
         mek.setBackground(bgEditText);
         fek.setBackground(bgEditText);
-        gewin.setBackground(bgEditText);
+        gewinn.setBackground(bgEditText);
 
         //Leere EditText
         mek.setText("");
@@ -285,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
         ergebnisVerwGK.setText("");
         sdVert.setText("");
         sk.setText(R.string.ergebnisSelbskosten);
-        gewin.setText("");
+        gewinn.setText("");
         bvpTV.setText(R.string.ergebnisBarverkaufspreis);
         ks.setText("");
         zvp.setText(R.string.ergebnisZielverkaufspreis);
@@ -313,5 +324,35 @@ public class MainActivity extends AppCompatActivity {
         objUtility.setUmsatzsteuer(0);
         objUtility.setBruttoverkaufspreis(0);
         objUtility.setNettoverkaufspreis(0);
+
+        clearFocus();
     }
+
+    private void closeKeyboard(){
+        View view = this.getCurrentFocus();
+        if (view != null){
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(),0);
+        }
+    }
+
+    private void clearFocus(){
+        closeKeyboard();
+
+        mek.clearFocus();
+        mgk.clearFocus();
+        fek.clearFocus();
+        fgk.clearFocus();
+        sdFert.clearFocus();
+        vertGk.clearFocus();
+        verwGk.clearFocus();
+        sdVert.clearFocus();
+        gewinn.clearFocus();
+        ks.clearFocus();
+        kr.clearFocus();
+        nvp.clearFocus();
+        umst.clearFocus();
+        bvp.clearFocus();
+    }
+
 }

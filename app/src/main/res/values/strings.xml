@@ -25,7 +25,7 @@
     <string name="nettoverkaufspreis">Nettoverkaufspreis</string>
     <string name="umsatzsteuer">Umsatzsteuer in %</string>
     <string name="bruttoverkaufspreis">Bruttoverkaufspreis</string>
-    <string name="berechnung">Berechnung</string>
+    <string name="berechnung">Berechnen</string>
     <string name="loeschen">Daten Löschen</string>
     <string name="ergebnisMaterialkosten">= Materialkosten: </string>
     <string name="ergebnisFertigungskosten">= Fertigungskosten: </string>
@@ -33,4 +33,8 @@
     <string name="ergebnisSelbskosten">= Selbstkosten: </string>
     <string name="ergebnisZielverkaufspreis">= Zielverkaufspreis:</string>
     <string name="warnungRueckwaerts">"Bitte lassen Sie das Textfeld \"Materialeinzelkosten\" oder \"Fertigungseinzelkosten\" frei. "</string>
+    <string name="pflichtfelder_vor">Nicht alle Pflichtfeldert ausgefüllt! Bitte alle Felder überprüfen</string>
+    <string name="pflichtfelder_rueck">Keine Eingaben! Bitte MEK oder FEK ausfüllen</string>
+    <string name="pflichtfelder_rueck_zuviel">Zuviele Eingaben! Bitte nur MEK oder FEK ausfüllen</string>
+    <string name="datenGeloescht">Alle Daten gelöscht</string>
 </resources>

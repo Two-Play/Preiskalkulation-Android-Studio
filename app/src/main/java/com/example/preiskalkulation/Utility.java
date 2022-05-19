@@ -1,12 +1,7 @@
 package com.example.preiskalkulation;
 
-import android.app.Activity;
-import android.content.Context;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.inputmethod.InputMethodManager;
+import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class Utility {
     private boolean vorwaerts;
@@ -311,7 +306,8 @@ public class Utility {
     public double convertToDouble(EditText textField){
         String value = textField.getText().toString();
         //Überprüfung ob EditText leer ist
-        if (!value.toString().isEmpty()){
+        if (!value.isEmpty()){
+            value = value.replaceAll(" €","");
             return Double.parseDouble(value.replaceAll(",", "."));
         }else {
             return 0.0;
@@ -319,7 +315,7 @@ public class Utility {
     }
 
     public String convertToString(double number){
-        return String.valueOf(String.format("%.2f", number));
+        return String.format("%.2f €", number);
     }
 
     public boolean validate(EditText[] fields){

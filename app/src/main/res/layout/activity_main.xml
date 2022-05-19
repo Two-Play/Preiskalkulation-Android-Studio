@@ -52,8 +52,7 @@
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/differenz"
-                android:visibility="visible" />
+                android:text="@string/differenz" />
         </com.google.android.material.button.MaterialButtonToggleGroup>
 
         <TextView
@@ -99,7 +98,7 @@
                         android:ems="10"
                         android:importantForAutofill="no"
                         android:inputType="numberDecimal"
-                        tools:ignore="SpeakableTextPresentCheck" />
+                        tools:ignore="LabelFor,SpeakableTextPresentCheck" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -126,27 +125,17 @@
                             android:ems="10"
                             android:importantForAutofill="no"
                             android:inputType="numberDecimal"
-                            tools:ignore="SpeakableTextPresentCheck" />
+                            tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
                     </LinearLayout>
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/ergebnisMGK"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <Space
-                            android:layout_width="match_parent"
-                            android:layout_height="27dp" />
-
-                        <TextView
-                            android:id="@+id/ergebnisMGK"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text=""
-                            android:textAlignment="viewEnd"
-                            android:textSize="24sp" />
-                    </LinearLayout>
+                        android:gravity="bottom|end"
+                        android:text=""
+                        android:textSize="24sp" />
 
                 </LinearLayout>
 
@@ -177,7 +166,7 @@
                         android:ems="10"
                         android:importantForAutofill="no"
                         android:inputType="numberDecimal"
-                        tools:ignore="SpeakableTextPresentCheck" />
+                        tools:ignore="LabelFor,SpeakableTextPresentCheck" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -204,26 +193,16 @@
                             android:ems="10"
                             android:importantForAutofill="no"
                             android:inputType="numberDecimal"
-                            tools:ignore="SpeakableTextPresentCheck" />
+                            tools:ignore="LabelFor,SpeakableTextPresentCheck" />
                     </LinearLayout>
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/ergebnisFGK"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <Space
-                            android:layout_width="match_parent"
-                            android:layout_height="27dp" />
-
-                        <TextView
-                            android:id="@+id/ergebnisFGK"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text=""
-                            android:textAlignment="viewEnd"
-                            android:textSize="24sp" />
-                    </LinearLayout>
+                        android:gravity="bottom|end"
+                        android:text=""
+                        android:textSize="24sp" />
 
                 </LinearLayout>
 
@@ -246,7 +225,7 @@
                         android:ems="10"
                         android:importantForAutofill="no"
                         android:inputType="numberDecimal"
-                        tools:ignore="SpeakableTextPresentCheck" />
+                        tools:ignore="LabelFor,SpeakableTextPresentCheck" />
                 </LinearLayout>
 
                 <TextView
@@ -308,26 +287,16 @@
                             android:ems="10"
                             android:importantForAutofill="no"
                             android:inputType="numberDecimal"
-                            tools:ignore="SpeakableTextPresentCheck" />
+                            tools:ignore="LabelFor,SpeakableTextPresentCheck" />
                     </LinearLayout>
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/ergebnisVerwGK"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <Space
-                            android:layout_width="match_parent"
-                            android:layout_height="27dp" />
-
-                        <TextView
-                            android:id="@+id/ergebnisVerwGK"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text=""
-                            android:textAlignment="viewEnd"
-                            android:textSize="24sp" />
-                    </LinearLayout>
+                        android:gravity="bottom|end"
+                        android:text=""
+                        android:textSize="24sp" />
 
                 </LinearLayout>
 
@@ -355,26 +324,17 @@
                             android:ems="10"
                             android:importantForAutofill="no"
                             android:inputType="numberDecimal"
-                            tools:ignore="SpeakableTextPresentCheck" />
+                            tools:ignore="LabelFor,SpeakableTextPresentCheck" />
                     </LinearLayout>
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/ergebnisverTGK"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:gravity="bottom|end"
+                        android:text=""
+                        android:textSize="24sp" />
 
-                        <Space
-                            android:layout_width="match_parent"
-                            android:layout_height="27dp" />
-
-                        <TextView
-                            android:id="@+id/ergebnisverTGK"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text=""
-                            android:textAlignment="viewEnd"
-                            android:textSize="24sp" />
-                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -396,7 +356,7 @@
                         android:ems="10"
                         android:importantForAutofill="no"
                         android:inputType="numberDecimal"
-                        tools:ignore="SpeakableTextPresentCheck" />
+                        tools:ignore="LabelFor,SpeakableTextPresentCheck" />
                 </LinearLayout>
 
                 <TextView
@@ -449,26 +409,17 @@
                             android:importantForAutofill="no"
                             android:inputType="numberDecimal"
                             android:minHeight="48dp"
-                            tools:ignore="SpeakableTextPresentCheck" />
+                            tools:ignore="LabelFor,SpeakableTextPresentCheck" />
                     </LinearLayout>
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/ergebnisGewinn"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:gravity="bottom|end"
+                        android:text=""
+                        android:textSize="24sp" />
 
-                        <Space
-                            android:layout_width="match_parent"
-                            android:layout_height="27dp" />
-
-                        <TextView
-                            android:id="@+id/ergebnisGewinn"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text=""
-                            android:textAlignment="viewEnd"
-                            android:textSize="24sp" />
-                    </LinearLayout>
                 </LinearLayout>
 
                 <TextView
@@ -504,26 +455,17 @@
                             android:ems="10"
                             android:importantForAutofill="no"
                             android:inputType="numberDecimal"
-                            tools:ignore="SpeakableTextPresentCheck" />
+                            tools:ignore="LabelFor,SpeakableTextPresentCheck" />
                     </LinearLayout>
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/ergebnisKs"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:gravity="bottom|end"
+                        android:text=""
+                        android:textSize="24sp" />
 
-                        <Space
-                            android:layout_width="match_parent"
-                            android:layout_height="27dp" />
-
-                        <TextView
-                            android:id="@+id/ergebnisKs"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text=""
-                            android:textAlignment="viewEnd"
-                            android:textSize="24sp" />
-                    </LinearLayout>
                 </LinearLayout>
 
                 <TextView
@@ -557,25 +499,17 @@
                             android:ems="10"
                             android:importantForAutofill="no"
                             android:inputType="numberDecimal"
-                            tools:ignore="SpeakableTextPresentCheck" />
+                            android:minHeight="48dp"
+                            tools:ignore="LabelFor,SpeakableTextPresentCheck" />
                     </LinearLayout>
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/ergebnisKr"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:gravity="bottom|end"
+                        android:textSize="24sp" />
 
-                        <Space
-                            android:layout_width="match_parent"
-                            android:layout_height="27dp" />
-
-                        <TextView
-                            android:id="@+id/ergebnisKr"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="viewEnd"
-                            android:textSize="24sp" />
-                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -596,7 +530,7 @@
                         android:ems="10"
                         android:importantForAutofill="no"
                         android:inputType="numberDecimal"
-                        tools:ignore="SpeakableTextPresentCheck" />
+                        tools:ignore="LabelFor,SpeakableTextPresentCheck" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -622,26 +556,17 @@
                             android:ems="10"
                             android:importantForAutofill="no"
                             android:inputType="numberDecimal"
-                            tools:ignore="SpeakableTextPresentCheck" />
+                            tools:ignore="LabelFor,SpeakableTextPresentCheck" />
                     </LinearLayout>
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/ergebnisUmst"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:gravity="bottom|end"
+                        android:text=""
+                        android:textSize="24sp" />
 
-                        <Space
-                            android:layout_width="match_parent"
-                            android:layout_height="27dp" />
-
-                        <TextView
-                            android:id="@+id/ergebnisUmst"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text=""
-                            android:textAlignment="viewEnd"
-                            android:textSize="24sp" />
-                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -662,7 +587,7 @@
                         android:ems="10"
                         android:importantForAutofill="no"
                         android:inputType="numberDecimal"
-                        tools:ignore="SpeakableTextPresentCheck" />
+                        tools:ignore="LabelFor,SpeakableTextPresentCheck" />
                 </LinearLayout>
             </LinearLayout>
 
