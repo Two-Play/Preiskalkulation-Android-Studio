@@ -312,7 +312,7 @@ public class Utility {
         String value = textField.getText().toString();
         //Überprüfung ob EditText leer ist
         if (!value.toString().isEmpty()){
-            return Double.parseDouble(textField.getText().toString());
+            return Double.parseDouble(value.replaceAll(",", "."));
         }else {
             return 0.0;
         }

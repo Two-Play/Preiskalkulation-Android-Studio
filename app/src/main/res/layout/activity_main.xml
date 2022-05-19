@@ -23,45 +23,38 @@
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <LinearLayout
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:checkedButton="@id/vorwaertsBtn"
+            app:selectionRequired="true"
+            app:singleSelection="true">
 
-            <com.google.android.material.button.MaterialButtonToggleGroup
-                android:id="@+id/toggleButton"
+            <Button
+                android:id="@+id/vorwaertsBtn"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:checkedButton="@id/vorwaertsBtn"
-                app:selectionRequired="true"
-                app:singleSelection="true">
+                android:text="@string/vorwaerts" />
 
-                <Button
-                    android:id="@+id/vorwaertsBtn"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/vorwaerts" />
+            <Button
+                android:id="@+id/rueckwaertsBtn"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rueckwaerts" />
 
-                <Button
-                    android:id="@+id/rueckwaertsBtn"
-                    style="?attr/materialButtonOutlinedStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/rueckwaerts" />
-
-                <Button
-                    android:id="@+id/differenzBtn"
-                    style="?attr/materialButtonOutlinedStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/differenz"
-                    android:visibility="visible" />
-            </com.google.android.material.button.MaterialButtonToggleGroup>
-
-        </LinearLayout>
+            <Button
+                android:id="@+id/differenzBtn"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/differenz"
+                android:visibility="visible" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
 
         <TextView
             android:id="@+id/disclaimer"

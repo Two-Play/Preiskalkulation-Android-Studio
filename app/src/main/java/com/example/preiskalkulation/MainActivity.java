@@ -258,7 +258,6 @@ public class MainActivity extends AppCompatActivity {
         nvp.setText(objUtility.convertToString(objUtility.getNettoverkaufspreis()));
         ergebnisUmst.setText(objUtility.convertToString(objUtility.getErgebnisUmst()));
         bvp.setText(objUtility.convertToString(objUtility.getBruttoverkaufspreis()));
-
     }
 
     public void datenLoeschung(){
