@@ -352,7 +352,7 @@ public class Utility {
 
     public void rueckwaertsBerechnung(boolean isMEK_Leer){
 
-        if (!(bruttoverkaufspreis == 0)){
+        if (bruttoverkaufspreis != 0){
             setErgebnisUmst(getBruttoverkaufspreis()/(100+getUmsatzsteuer())*getUmsatzsteuer());
             setNettoverkaufspreis(getBruttoverkaufspreis()-getErgebnisUmst());
         }
@@ -362,12 +362,12 @@ public class Utility {
         setBarverkaufspreis(getZielverkaufspreis()-getErgebnisKs());
         setErgebnisGewinn(getBarverkaufspreis()/(100+getGewinn())*getGewinn());
         setSelbstkosten(getBarverkaufspreis()-getErgebnisGewinn());
-        double prozet = 100+getVertriebsgemeinkosten()+getVerwaltungsgemeinkosten();
-        setErgebnisVerwGK(getSelbstkosten()/prozet*getVerwaltungsgemeinkosten());
-        setErgebnisvertGK(getSelbstkosten()/prozet*getVertriebsgemeinkosten());
+        double prozent = 100+getVertriebsgemeinkosten()+getVerwaltungsgemeinkosten();
+        setErgebnisVerwGK(getSelbstkosten()/prozent*getVerwaltungsgemeinkosten());
+        setErgebnisvertGK(getSelbstkosten()/prozent*getVertriebsgemeinkosten());
         setHerstellkosten(getSelbstkosten()-getSonderEkdVert()-getErgebnisvertGK()-getErgebnisVerwGK());
 
-        if ( isMEK_Leer){
+        if (isMEK_Leer){
             setErgebnisFGK(prozentBerechnen(getFertigungsgemeinkosten(),getFertigungseinzelkosten()));
             setFertigungskosten(getErgebnisFGK()+getSonderEkdFert()+getFertigungseinzelkosten());
             setMaterialkosten(getHerstellkosten()-getFertigungskosten());
@@ -381,6 +381,7 @@ public class Utility {
             setFertigungseinzelkosten(getFertigungskosten()-getErgebnisFGK());
         }
     }
+    
     public void differenz(){
 
         setErgebnisMGK(prozentBerechnen(getMaterialgemeinkosten(),getMaterialeinzelkosten()));
@@ -392,7 +393,7 @@ public class Utility {
         setErgebnisvertGK(prozentBerechnen(getVertriebsgemeinkosten(),getHerstellkosten()));
         setSelbstkosten(getSonderEkdFert()+getErgebnisVerwGK()+getErgebnisvertGK()+getHerstellkosten());
 
-        if (!(bruttoverkaufspreis == 0)){
+        if (bruttoverkaufspreis != 0){
             setErgebnisUmst(getBruttoverkaufspreis()/(100+getUmsatzsteuer())*getUmsatzsteuer());
             setNettoverkaufspreis(getBruttoverkaufspreis()-getErgebnisUmst());
         }

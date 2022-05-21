@@ -354,5 +354,4 @@ public class MainActivity extends AppCompatActivity {
         umst.clearFocus();
         bvp.clearFocus();
     }
-
 }
