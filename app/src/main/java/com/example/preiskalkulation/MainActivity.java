@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
     TextView ergebnisKs;
     TextView ergebnisUmst;
     TextView disclaimer;
+    TextView tvSekdV;
+    TextView tvSdkdF;
 
     Drawable bgEditText;
 
@@ -91,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
             ergebnisKs = findViewById(R.id.ergebnisKs);
             ergebnisUmst = findViewById(R.id.ergebnisUmst);
             disclaimer = findViewById(R.id.disclaimer);
+            tvSdkdF = findViewById(R.id.tvSdkdF);
+            tvSekdV = findViewById(R.id.tvSekdV);
 
         MaterialButtonToggleGroup materialButtonToggleGroup = findViewById(R.id.toggleButton);
 
@@ -118,6 +122,11 @@ public class MainActivity extends AppCompatActivity {
                             nvp.setEnabled(false);
                             bvp.setEnabled(false);
 
+                            sdFert.setVisibility(View.VISIBLE);
+                            sdVert.setVisibility(View.VISIBLE);
+                            tvSdkdF.setVisibility(View.VISIBLE);
+                            tvSekdV.setVisibility(View.VISIBLE);
+
                             nvp.setText("");
                             bvp.setText("");
 
@@ -125,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
 
                             //Leert EditTexts
                             datenLoeschung();
-
                             clearFocus();
                             break;
                         case R.id.rueckwaertsBtn:
@@ -138,11 +146,15 @@ public class MainActivity extends AppCompatActivity {
                             nvp.setEnabled(true);
                             bvp.setEnabled(true);
 
+                            sdFert.setVisibility(View.GONE);
+                            sdVert.setVisibility(View.GONE);
+                            tvSdkdF.setVisibility(View.GONE);
+                            tvSekdV.setVisibility(View.GONE);
+
                             disclaimer.setVisibility(View.VISIBLE);
 
                             //Leert EditTexts
                             datenLoeschung();
-
                             clearFocus();
                             break;
                         case R.id.differenzBtn:
@@ -156,11 +168,15 @@ public class MainActivity extends AppCompatActivity {
                             bvp.setEnabled(true);
                             gewinn.setText("");
 
+                            sdFert.setVisibility(View.GONE);
+                            sdVert.setVisibility(View.GONE);
+                            tvSdkdF.setVisibility(View.GONE);
+                            tvSekdV.setVisibility(View.GONE);
+
                             disclaimer.setVisibility(View.GONE);
 
                             //Leert EditTexts
                             datenLoeschung();
-
                             clearFocus();
                             break;
                         default:
@@ -194,10 +210,11 @@ public class MainActivity extends AppCompatActivity {
             //MultiChois Check #### Rückwärts Vorwärts und Differenz
             //Vorwärts
             if (objUtility.isVorwaerts()){
-                if (!(objUtility.validate(new EditText[] {mek,mgk,fek,fgk,verwGk,vertGk,gewinn,umst}))) {
+                if (!(objUtility.validate(new EditText[] {mek,mgk,fek,fgk,verwGk,vertGk,gewinn}))) {
                     objUtility.vorwaertsBerechnung();
                     nvp.setBackgroundResource(R.color.ic_launcher_background);
                     bvp.setBackgroundResource(R.color.ic_launcher_background);
+
                     setDaten();
                 }else
                     Toast.makeText(MainActivity.this, getString(R.string.pflichtfelder_vor), Toast.LENGTH_LONG).show();
@@ -225,13 +242,15 @@ public class MainActivity extends AppCompatActivity {
                 }
                 //Differenz
             }else if (objUtility.isDifferenz()){
-                if (!(objUtility.validate(new EditText[] {mek,mgk,fek,fgk,verwGk,vertGk,umst,nvp}))) {
+                if (!objUtility.validate(new EditText[] {mek,mgk,fek,fgk,verwGk,vertGk,umst,bvp})) {
                 objUtility.differenz();
-                gewinn.setText(objUtility.convertToString(objUtility.getGewinn()));
+                String zsp = objUtility.convertToString(objUtility.getGewinn());
+                gewinn.setText(zsp.replaceAll(" €",""));
                 ergebnisGewinn.setText(objUtility.convertToString(objUtility.getErgebnisGewinn()));
                 gewinn.setBackgroundResource(R.color.ic_launcher_background);
                 setDaten();
-                }
+                }else
+                    Toast.makeText(MainActivity.this, getString(R.string.pflichtfelder_vor), Toast.LENGTH_LONG).show();
             }
 
 

@@ -337,7 +337,7 @@ public class Utility {
         setHerstellkosten(getMaterialkosten()+getFertigungskosten());
         setErgebnisVerwGK(prozentBerechnen(getVerwaltungsgemeinkosten(),getHerstellkosten()));
         setErgebnisvertGK(prozentBerechnen(getVertriebsgemeinkosten(),getHerstellkosten()));
-        setSelbstkosten(getSonderEkdFert()+getErgebnisVerwGK()+getErgebnisvertGK()+getHerstellkosten());
+        setSelbstkosten(getSondereinzelkosten_des_Vertriebs()+getErgebnisVerwGK()+getErgebnisvertGK()+getHerstellkosten());
         setErgebnisGewinn(prozentBerechnen(getGewinn(),getSelbstkosten()));
         setBarverkaufspreis(getSelbstkosten()+getErgebnisGewinn());
         double prozent_im_hundert = 100-getKundenskonto();
@@ -365,10 +365,12 @@ public class Utility {
         double prozent = 100+getVertriebsgemeinkosten()+getVerwaltungsgemeinkosten();
         setErgebnisVerwGK(getSelbstkosten()/prozent*getVerwaltungsgemeinkosten());
         setErgebnisvertGK(getSelbstkosten()/prozent*getVertriebsgemeinkosten());
-        setHerstellkosten(getSelbstkosten()-getSonderEkdVert()-getErgebnisvertGK()-getErgebnisVerwGK());
+        //setHerstellkosten(getSelbstkosten()-getSonderEkdVert()-getErgebnisvertGK()-getErgebnisVerwGK());
+        setHerstellkosten(getSelbstkosten()-getErgebnisvertGK()-getErgebnisVerwGK());
 
         if (isMEK_Leer){
             setErgebnisFGK(prozentBerechnen(getFertigungsgemeinkosten(),getFertigungseinzelkosten()));
+            //setFertigungskosten(getErgebnisFGK()+getSonderEkdFert()+getFertigungseinzelkosten());
             setFertigungskosten(getErgebnisFGK()+getSonderEkdFert()+getFertigungseinzelkosten());
             setMaterialkosten(getHerstellkosten()-getFertigungskosten());
             setErgebnisMGK(getMaterialkosten()/(100+getMaterialgemeinkosten())*getMaterialgemeinkosten());
@@ -376,6 +378,7 @@ public class Utility {
         }else {
             setErgebnisMGK(prozentBerechnen(getMaterialgemeinkosten(),getMaterialeinzelkosten()));
             setMaterialkosten(getErgebnisMGK()+getMaterialeinzelkosten());
+            //setFertigungskosten(getHerstellkosten()-getMaterialkosten()+getSonderEkdFert());
             setFertigungskosten(getHerstellkosten()-getMaterialkosten());
             setErgebnisFGK(getFertigungskosten()/(100+getFertigungsgemeinkosten())*getFertigungsgemeinkosten());
             setFertigungseinzelkosten(getFertigungskosten()-getErgebnisFGK());
