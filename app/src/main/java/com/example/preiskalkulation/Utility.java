@@ -346,8 +346,10 @@ public class Utility {
         prozent_im_hundert = 100-getKundenrabatt();
         setErgebnisKr(getZielverkaufspreis()/prozent_im_hundert*getKundenrabatt());
         setNettoverkaufspreis(getZielverkaufspreis()+getErgebnisKr());
+        if (getUmsatzsteuer() != 0){
         setErgebnisUmst(prozentBerechnen(getUmsatzsteuer(),getNettoverkaufspreis()));
         setBruttoverkaufspreis(getNettoverkaufspreis()+getErgebnisUmst());
+        }
     }
 
     public void rueckwaertsBerechnung(boolean isMEK_Leer){
